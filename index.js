@@ -10,10 +10,13 @@ class CountdownTimer {
         };
     }
 
-   update() {
-    const currentTime = new Date();
-    this.action(currentTime);
-  }
+    start() {
+        this.action(0);
+        setInterval(() => {
+            const currentTime = new Date();
+            this.action(currentTime);
+        },1000);
+    } 
 
     action(currentTime) {
     const time = this.targetDate - currentTime;
@@ -26,11 +29,6 @@ class CountdownTimer {
     pad(value) {
         return value < 10 ? `0${value}` : value;
     }
-
-    start() { 
-        setInterval(() =>
-            this.update(),
-    1000)}
 }
 
 let timer01 = new CountdownTimer({
